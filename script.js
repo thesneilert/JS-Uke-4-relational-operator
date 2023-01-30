@@ -8,14 +8,14 @@ let pointsNumber = 0;
 
 //view
 function updateView() {
-    document.getElementById("app").innerHTML = `
+    document.getElementById("app").innerHTML = /* html */ `
     Points: <span style="color:#b58900;">${pointsNumber}</span>
     <br> <br>
     ${firstNumber}
     <input type="text" placeholder=" >  =  <"> 
     ${secondNumber}
     <br> <br>
-    <button onclick="btnNewNumbers()">New</button>
+    <button onclick="btnNew()">New</button>
     <button onclick="btnSubmit()">Submit</button>
     <button onclick="btnReset()">Reset</button>
     `; 
@@ -30,12 +30,8 @@ function startGame(){
     updateView(); //denne gjør at innerhtml vises
 }
 
-function showPointsNumber(){
-    app.innerHTML = pointsNumber;''
-}
-
 //random nummere funksjon
-function btnNewNumbers(){
+function btnNew(){
     firstNumber = Math.round(Math.random() * 10);
     secondNumber = Math.round(Math.random() * 10);
     updateView();
@@ -44,6 +40,10 @@ function btnNewNumbers(){
 //submit knappen
 function btnSubmit(){
     showPointsNumber();
+}
+function showPointsNumber(){
+    app.innerHTML = pointsNumber = pointsNumber + 1; 
+    updateView();
 }
 
 //reset knappen
