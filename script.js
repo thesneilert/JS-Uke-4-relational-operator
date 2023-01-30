@@ -1,25 +1,32 @@
 //model
 const app = document.getElementById("app");
 
-let numFirst = 0;
-let numSecond = 0;
-let numPoint = 0;
+let firstNumber = 0;
+let secondNumber = 0;
+let pointsNumber = 0;
 
 
 //view
+updateView();
 function updateView() {
+    document.getElementById("app").innerHTML = `
+    Points: ${pointsNumber}
+    <br> <br>
+    ${firstNumber}
+    <input type="text"> 
+    ${secondNumber}
+    <br> <br>
+    <button onclick="btnNewNumbers()">New</button>
+    <button onclick="btnSubmit()">Submit</button>
+    <button onclick="btnReset()">Reset</button>
+    `; 
 }
 
-document.getElementById("app").innerHTML = `
-Poeng: ${numPoint}
-<br> <br>
-${numFirst}
-<input type="text" oninput="guess = parseInt(this.value)"/> 
-${numSecond}
-<br> <br>
-<button onlick="btnNew">Nytt tall</button>
-<button onclick="btnSubmit()">Bekreft</button>
-<button onclick="btnReset()">Restart</button>
-`;
 
 //controller
+function btnNewNumbers(){
+    firstNumber = Math.ceil(Math.random() * 10);
+    secondNumber = Math.ceil(Math.random() * 10);
+    updateView();
+}
+
