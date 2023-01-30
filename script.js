@@ -1,14 +1,14 @@
 //model
 const app = document.getElementById("app"); //henter div med id "app"
 
-let firstNumber;
-let secondNumber;
+let firstNumber = 0;
+let secondNumber = 0;
 let pointsNumber = 0;
 
 
 //view
 function updateView() {
-    document.getElementById("app").innerHTML = /* html */ `
+    document.getElementById("app").innerHTML = /*html*/ `
     Points: <span style="color:#b58900;">${pointsNumber}</span>
     <br> <br>
     ${firstNumber}
@@ -42,7 +42,7 @@ function btnSubmit(){
     showPointsNumber();
 }
 function showPointsNumber(){
-    app.innerHTML = pointsNumber = pointsNumber + 1; 
+    pointsNumber = pointsNumber + 1; 
     updateView();
 }
 
@@ -53,4 +53,3 @@ function btnReset(){
     pointsNumber = 0;
     updateView();
 }
-
