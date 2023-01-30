@@ -1,13 +1,12 @@
 //model
-const app = document.getElementById("app");
+const app = document.getElementById("app"); //henter div med id "app"
 
-let firstNumber = 0;
-let secondNumber = 0;
-let pointsNumber = 0;
+let firstNumber;
+let secondNumber;
+let pointsNumber;
 
 
 //view
-updateView();
 function updateView() {
     document.getElementById("app").innerHTML = `
     Points: ${pointsNumber}
@@ -24,9 +23,27 @@ function updateView() {
 
 
 //controller
+startGame(); //starter spill, i funksjonen er det updateView som starter html
+function startGame(){
+    firstNumber = 1;
+    secondNumber = 10;
+    updateView(); //denne gjør at innerhtml vises
+}
+
+//random nummere funksjon
 function btnNewNumbers(){
     firstNumber = Math.ceil(Math.random() * 10);
     secondNumber = Math.ceil(Math.random() * 10);
     updateView();
+}
+
+//submit knappen
+function btnSubmit(){
+
+}
+
+//reset knappen
+function btnReset(){
+
 }
 
