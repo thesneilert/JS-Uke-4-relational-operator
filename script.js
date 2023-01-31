@@ -1,4 +1,4 @@
-// MODEL
+// ----- MODEL -----
 
 const app = document.getElementById("app"); //henter div med id "app"
 
@@ -8,7 +8,7 @@ let pointsNumber = 0;
 let popup = '';
 
 
-// VIEW
+// ----- VIEW -----
 
 function updateView() {
     document.getElementById("app").innerHTML = `
@@ -28,7 +28,7 @@ function updateView() {
 }
 
 
-// CONTROLLER
+// ----- CONTROLLER -----
 
 //setter farger på points ettersom negativ/positiv
 //skriver også hele sidens html
