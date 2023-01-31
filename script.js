@@ -1,4 +1,5 @@
-//model
+// MODEL
+
 const app = document.getElementById("app"); //henter div med id "app"
 
 let firstNumber = 0;
@@ -7,11 +8,35 @@ let pointsNumber = 0;
 let popup = '';
 
 
-//view
+// VIEW
+
 function updateView() {
-    document.getElementById("app").innerHTML = /*html*/ `
-    Points: <span style="color:#b58900;">${pointsNumber}</span>
-    <br> <br>
+    document.getElementById("app").innerHTML = `
+        Points: ${pointsNumber}
+        <br> <br>
+        ${firstNumber}
+        <input id="inputField" type="text" placeholder=" >  =  <"> 
+        ${secondNumber}
+        <br> <br>
+        <button onclick="newNumber()">New</button>
+        <button onclick="submit()">Submit</button>
+        <button onclick="reset()">Reset</button>
+        <br><br>
+        <span style="color:#4c4c4c;">${popup}</span>
+        `;
+    pointsColorChange();
+}
+
+
+// CONTROLLER
+
+//setter farger på points ettersom negativ/positiv
+//skriver også hele sidens html
+function pointsColorChange(){
+    if (pointsNumber == 0) {
+        document.getElementById("app").innerHTML = `
+          Points: <span style="color:#b58900;">${pointsNumber}</span>
+          <br> <br>
     ${firstNumber}
     <input id="inputField" type="text" placeholder=" >  =  <"> 
     ${secondNumber}
@@ -21,12 +46,40 @@ function updateView() {
     <button onclick="reset()">Reset</button>
     <br><br>
     <span style="color:#4c4c4c;">${popup}</span>
-    `; 
+        `;
+      }else if (pointsNumber >= 0) {
+        document.getElementById("app").innerHTML = `
+          Points: <span style="color:#529900;">${pointsNumber}</span>
+          <br> <br>
+    ${firstNumber}
+    <input id="inputField" type="text" placeholder=" >  =  <"> 
+    ${secondNumber}
+    <br> <br>
+    <button onclick="newNumber()">New</button>
+    <button onclick="submit()">Submit</button>
+    <button onclick="reset()">Reset</button>
+    <br><br>
+    <span style="color:#4c4c4c;">${popup}</span>
+        `;
+      } else {
+        document.getElementById("app").innerHTML = `
+          Points: <span style="color:#dc322f;">${pointsNumber}</span>
+          <br> <br>
+    ${firstNumber}
+    <input id="inputField" type="text" placeholder=" >  =  <"> 
+    ${secondNumber}
+    <br> <br>
+    <button onclick="newNumber()">New</button>
+    <button onclick="submit()">Submit</button>
+    <button onclick="reset()">Reset</button>
+    <br><br>
+    <span style="color:#4c4c4c;">${popup}</span>
+        `;
+      }
 }
 
-
-//controller
-startGame(); //starter spill; i funksjonen er det updateView som starter html
+//starter spill; i funksjonen er det updateView som starter html
+startGame();
 function startGame(){
     firstNumber = 1;
     secondNumber = 10;
