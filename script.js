@@ -4,6 +4,7 @@ const app = document.getElementById("app"); //henter div med id "app"
 let firstNumber = 0;
 let secondNumber = 0;
 let pointsNumber = 0;
+let popup = '';
 
 
 //view
@@ -12,12 +13,14 @@ function updateView() {
     Points: <span style="color:#b58900;">${pointsNumber}</span>
     <br> <br>
     ${firstNumber}
-    <input type="text" placeholder=" >  =  <"> 
+    <input id="inputField" type="text" placeholder=" >  =  <"> 
     ${secondNumber}
     <br> <br>
-    <button onclick="btnNew()">New</button>
-    <button onclick="btnSubmit()">Submit</button>
-    <button onclick="btnReset()">Reset</button>
+    <button onclick="newNumber()">New</button>
+    <button onclick="submit()">Submit</button>
+    <button onclick="reset()">Reset</button>
+    <br><br>
+    <span style="color:#4c4c4c;">${popup}</span>
     `; 
 }
 
@@ -31,25 +34,42 @@ function startGame(){
 }
 
 //random nummere funksjon
-function btnNew(){
+function newNumber(){
     firstNumber = Math.round(Math.random() * 10);
     secondNumber = Math.round(Math.random() * 10);
     updateView();
 }
 
 //submit knappen
-function btnSubmit(){
-    showPointsNumber();
-}
-function showPointsNumber(){
-    pointsNumber = pointsNumber + 1; 
+function submit(){
+    const playerInput = document.getElementById("inputField").value;
+        if (playerInput !== ">" && playerInput !== "<" && playerInput !== "=") {
+        popup = "<span style='color: #dc322f;'>Invalid input, only >, <, or = are allowed.</span>";
+        updateView();
+        return;
+    }
+        if (playerInput === "=" && firstNumber === secondNumber){
+            pointsNumber.innerHTML = ++pointsNumber;
+            popup = "Correct, you are awarded <span style='color: #529900;'>+1</span> points."
+        } else if (playerInput === "<" && firstNumber < secondNumber){
+            pointsNumber.innerHTML = ++pointsNumber;
+            popup = "Correct, you are awarded <span style='color: #529900;'>+1</span> points."
+        } else if (playerInput === ">" && firstNumber > secondNumber){
+            pointsNumber.innerHTML = ++pointsNumber;
+            popup = "Correct, you are awarded <span style='color: #529900;'>+1</span> points."
+        } else {
+            pointsNumber.innerHTML = --pointsNumber;
+            popup = "Wrong, you are withdrawn <span style='color: #dc322f;'>-1</span> points."
+        }
+    newNumber();
     updateView();
 }
 
 //reset knappen
-function btnReset(){
+function reset(){
     firstNumber = 1;
     secondNumber = 10;
     pointsNumber = 0;
+    popup = '';
     updateView();
 }
